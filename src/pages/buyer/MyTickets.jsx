@@ -9,7 +9,6 @@ import {
   HiLocationMarker,
 } from "react-icons/hi";
 
-// ============ TanStack Query Implementation (Uncomment to use) ============
 // import { useQuery } from '@tanstack/react-query';
 //
 // const MyTickets = () => {
@@ -36,9 +35,7 @@ import {
 //       console.error('Error downloading ticket:', error);
 //     }
 //   };
-// ============ End TanStack Query Implementation ============
 
-// ============ Current useEffect Implementation ============
 const MyTickets = () => {
   const [tickets, setTickets] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -61,12 +58,25 @@ const MyTickets = () => {
   const handleDownload = async (ticketId) => {
     try {
       const response = await ticketAPI.download(ticketId);
-      window.open(response.data.pdfUrl, "_blank");
+      const pdfUrl = response.data.pdfUrl;
+
+      const pdfResponse = await fetch(pdfUrl);
+      const blob = await pdfResponse.blob();
+      const url = window.URL.createObjectURL(blob);
+
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = `ticket-${ticketId}.pdf`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      window.URL.revokeObjectURL(url);
+      // window.open(response.data.pdfUrl, "_blank");
     } catch (error) {
       console.error("Error downloading ticket:", error);
     }
   };
-  // ============ End useEffect Implementation ============
 
   if (loading) return <LoadingSpinner />;
 
