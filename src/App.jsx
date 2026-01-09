@@ -10,6 +10,7 @@ import Register from "./pages/auth/Register";
 import Events from "./pages/buyer/Events";
 import EventDetails from "./pages/buyer/EventDetails";
 import MyTickets from "./pages/buyer/MyTickets";
+import MyOrders from "./pages/buyer/MyOrders";
 import PaymentVerify from "./pages/buyer/PaymentVerify";
 import MockCheckout from "./pages/buyer/MockCheckout";
 import Profile from "./pages/Profile";
@@ -74,6 +75,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <MyTickets />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path='/my-orders'
+            element={
+              <ProtectedRoute>
+                <MyOrders />
               </ProtectedRoute>
             }
           />
