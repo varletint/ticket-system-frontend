@@ -95,7 +95,9 @@ const Scanner = () => {
   }, [eventId, fetchStats, onScanSuccess, onScanError]);
 
   const resetScanner = async () => {
+    // Reset all state
     setResult(null);
+    setIsLoading(false);
     isProcessingRef.current = false; // Allow new scans
     setScanning(true);
 
