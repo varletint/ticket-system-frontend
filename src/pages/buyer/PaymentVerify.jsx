@@ -11,6 +11,8 @@ const PaymentVerify = () => {
   const [order, setOrder] = useState(null);
   const [error, setError] = useState("");
 
+  console.log(searchParams);
+
   useEffect(() => {
     // Paystack can return either 'reference' or 'trxref' as the payment reference
     const reference =
