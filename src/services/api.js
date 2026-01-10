@@ -88,7 +88,8 @@ export const ticketAPI = {
   verify: (reference) => api.post("/tickets/verify", { reference }),
   getMyTickets: () => api.get("/tickets/my-tickets"),
   getOne: (id) => api.get(`/tickets/${id}`),
-  download: (id) => api.get(`/tickets/${id}/download`),
+  download: (id, config = {}) =>
+    api.get(`/tickets/${id}/download`, { responseType: "blob", ...config }),
 };
 
 // Validation APIs

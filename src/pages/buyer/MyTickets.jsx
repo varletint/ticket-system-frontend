@@ -57,11 +57,13 @@ const MyTickets = () => {
 
   const handleDownload = async (ticketId) => {
     try {
-      const response = await ticketAPI.download(ticketId);
-      const pdfUrl = response.data.pdfUrl;
+      // Backend streams PDF directly as binary, so use blob responseType
+      const response = await ticketAPI.download(ticketId, {
+        responseType: "blob",
+      });
 
-      const pdfResponse = await fetch(pdfUrl);
-      const blob = await pdfResponse.blob();
+      // Create blob from response data
+      const blob = new Blob([response.data], { type: "application/pdf" });
       const url = window.URL.createObjectURL(blob);
 
       const link = document.createElement("a");
@@ -72,7 +74,6 @@ const MyTickets = () => {
       document.body.removeChild(link);
 
       window.URL.revokeObjectURL(url);
-      // window.open(response.data.pdfUrl, "_blank");
     } catch (error) {
       console.error("Error downloading ticket:", error);
     }
