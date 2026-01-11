@@ -54,7 +54,7 @@ The application will be available at `http://localhost:5173`.
 Create a `.env` file in the `client` directory with the following variables:
 
 ```env
-VITE_API_URL=http://localhost:5000/api
+
 ```
 
 ## Available Scripts
