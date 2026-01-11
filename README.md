@@ -4,10 +4,10 @@ This is the frontend application for the Ticket System, built with React, Vite, 
 
 ## Features
 
-- **Buyer**: Browse events, view event details, purchase tickets, & manage tickets/orders.
-- **Organizer**: Create & manage events, view event dashboards, & set up payout accounts.
+- **Buyer**: Browse events, view event details, purchase tickets, and manage tickets/orders.
+- **Organizer**: Create & manage events, view event dashboards, publish events, and set up payout accounts.
 - **Validator**: Scan & validate ticket QR codes at event entrances.
-- **Admin**: Manage users, organizers, transactions, disputes, & audit logs.
+- **Admin**: Manage users, organizers, transactions, disputes, and audit logs.
 
 ## Tech Stack
 

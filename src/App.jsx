@@ -19,6 +19,7 @@ import OrganizerDashboard from "./pages/organizer/OrganizerDashboard";
 import CreateEvent from "./pages/organizer/CreateEvent";
 import ManageEvents from "./pages/organizer/ManageEvents";
 import SetupPayout from "./pages/organizer/SetupPayout";
+import ManageValidators from "./pages/organizer/ManageValidators";
 
 import ValidatorDashboard from "./pages/validator/ValidatorDashboard";
 import Scanner from "./pages/validator/Scanner";
@@ -132,6 +133,14 @@ function App() {
             element={
               <ProtectedRoute roles={["organizer", "admin"]}>
                 <SetupPayout />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path='/organizer/events/:eventId/validators'
+            element={
+              <ProtectedRoute roles={["organizer", "admin"]}>
+                <ManageValidators />
               </ProtectedRoute>
             }
           />

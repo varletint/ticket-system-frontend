@@ -118,6 +118,13 @@ export const adminAPI = {
 export const organizerAPI = {
   getBanks: () => api.get("/organizer/banks"),
   setupPayout: (data) => api.post("/organizer/setup-payout", data),
+  // Validator management
+  getEventValidators: (eventId) =>
+    api.get(`/organizer/events/${eventId}/validators`),
+  createValidator: (eventId, data) =>
+    api.post(`/organizer/events/${eventId}/validators`, data),
+  removeValidator: (eventId, validatorId) =>
+    api.delete(`/organizer/events/${eventId}/validators/${validatorId}`),
 };
 
 // Order APIs (user-facing)
