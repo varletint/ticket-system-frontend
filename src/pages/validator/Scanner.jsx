@@ -95,21 +95,33 @@ const Scanner = () => {
   }, [eventId, fetchStats, onScanSuccess, onScanError]);
 
   const resetScanner = async () => {
-    // Reset all state
+    // Reset all state first
     setResult(null);
     setIsLoading(false);
-    isProcessingRef.current = false; // Allow new scans
     setScanning(true);
 
-    // Resume the scanner
+    // Clear the existing scanner and create a fresh one
     if (scannerRef.current) {
       try {
-        await scannerRef.current.resume();
+        await scannerRef.current.clear();
       } catch (e) {
-        // If resume fails, try to re-render the scanner
-        console.log("Resuming scanner...");
+        console.log("Error clearing scanner:", e);
       }
     }
+
+    // Small delay to let the DOM update, then re-initialize the scanner
+    setTimeout(() => {
+      const scanner = new Html5QrcodeScanner("qr-reader", {
+        fps: 5,
+        qrbox: { width: 250, height: 250 },
+        aspectRatio: 1.0,
+        rememberLastUsedCamera: true,
+      });
+
+      scanner.render(onScanSuccess, onScanError);
+      scannerRef.current = scanner;
+      isProcessingRef.current = false; // Allow new scans
+    }, 100);
   };
 
   return (
