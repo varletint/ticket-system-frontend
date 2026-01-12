@@ -17,6 +17,7 @@ import Profile from "./pages/Profile";
 
 import OrganizerDashboard from "./pages/organizer/OrganizerDashboard";
 import CreateEvent from "./pages/organizer/CreateEvent";
+import EditEvent from "./pages/organizer/EditEvent";
 import ManageEvents from "./pages/organizer/ManageEvents";
 import SetupPayout from "./pages/organizer/SetupPayout";
 import ManageValidators from "./pages/organizer/ManageValidators";
@@ -125,6 +126,14 @@ function App() {
             element={
               <ProtectedRoute roles={["organizer", "admin"]}>
                 <ManageEvents />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path='/organizer/edit/:id'
+            element={
+              <ProtectedRoute roles={["organizer", "admin"]}>
+                <EditEvent />
               </ProtectedRoute>
             }
           />

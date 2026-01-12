@@ -158,28 +158,28 @@ const ManageEvents = () => {
                         title='Manage Validators'>
                         <HiUserGroup />
                       </Link>
+                      {!["completed", "cancelled"].includes(event.status) && (
+                        <Link
+                          to={`/organizer/edit/${event._id}`}
+                          className='p-2 text-gray-500 hover:text-primary-600'
+                          title='Edit'>
+                          <HiPencil />
+                        </Link>
+                      )}
                       {event.status === "draft" && (
-                        <>
-                          <Link
-                            to={`/organizer/edit/${event._id}`}
-                            className='p-2 text-gray-500 hover:text-primary-600'
-                            title='Edit'>
-                            <HiPencil />
-                          </Link>
-                          <button
-                            onClick={() => handlePublish(event._id)}
-                            disabled={!isApprovedOrganizer || !hasPaystack}
-                            className='p-2 text-green-500 hover:text-green-700 disabled:opacity-50 disabled:cursor-not-allowed'
-                            title={
-                              !isApprovedOrganizer
-                                ? "Awaiting approval"
-                                : !hasPaystack
-                                ? "Setup paystack first"
-                                : "Publish"
-                            }>
-                            <HiUpload />
-                          </button>
-                        </>
+                        <button
+                          onClick={() => handlePublish(event._id)}
+                          disabled={!isApprovedOrganizer || !hasPaystack}
+                          className='p-2 text-green-500 hover:text-green-700 disabled:opacity-50 disabled:cursor-not-allowed'
+                          title={
+                            !isApprovedOrganizer
+                              ? "Awaiting approval"
+                              : !hasPaystack
+                              ? "Setup paystack first"
+                              : "Publish"
+                          }>
+                          <HiUpload />
+                        </button>
                       )}
                       {event.status === "published" && (
                         <button
