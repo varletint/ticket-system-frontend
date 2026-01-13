@@ -107,12 +107,8 @@ const TransactionMonitor = () => {
   return (
     <div className='max-w-7xl mx-auto px-4 py-8'>
       <div className='flex justify-between items-center mb-6'>
-        <h1 className='text-2xl font-bold text-gray-900'>
-          Transaction Monitor
-        </h1>
-        <button
-          onClick={fetchData}
-          className='btn btn-secondary flex items-center gap-2'>
+        <h1 className='text-2xl font-bold text-text'>Transaction Monitor</h1>
+        <button onClick={fetchData} className='btn flex items-center gap-2'>
           <HiRefresh /> Refresh
         </button>
       </div>
@@ -125,7 +121,7 @@ const TransactionMonitor = () => {
               <HiCheck className='text-green-600' />
             </div>
             <div>
-              <p className='text-xs text-gray-500'>Completed</p>
+              <p className='text-xs text-text/60'>Completed</p>
               <p className='text-xl font-bold'>
                 {stats?.summary?.completedCount || 0}
               </p>
@@ -138,7 +134,7 @@ const TransactionMonitor = () => {
               <HiExclamation className='text-red-600' />
             </div>
             <div>
-              <p className='text-xs text-gray-500'>Failed</p>
+              <p className='text-xs text-text/60'>Failed</p>
               <p className='text-xl font-bold'>
                 {stats?.summary?.failedCount || 0}
               </p>
@@ -151,7 +147,7 @@ const TransactionMonitor = () => {
               <HiClock className='text-blue-600' />
             </div>
             <div>
-              <p className='text-xs text-gray-500'>Pending</p>
+              <p className='text-xs text-text/60'>Pending</p>
               <p className='text-xl font-bold'>
                 {stats?.summary?.pendingCount || 0}
               </p>
@@ -164,7 +160,7 @@ const TransactionMonitor = () => {
               <HiCurrencyDollar className='text-purple-600' />
             </div>
             <div>
-              <p className='text-xs text-gray-500'>Refunded</p>
+              <p className='text-xs text-text/60'>Refunded</p>
               <p className='text-xl font-bold'>
                 {stats?.summary?.refundedCount || 0}
               </p>
@@ -177,7 +173,7 @@ const TransactionMonitor = () => {
               <HiCurrencyDollar className='text-primary-600' />
             </div>
             <div>
-              <p className='text-xs text-gray-500'>Total Revenue</p>
+              <p className='text-xs text-text/60'>Total Revenue</p>
               <p className='text-xl font-bold'>
                 ₦{(stats?.summary?.totalAmount || 0).toLocaleString()}
               </p>
@@ -206,17 +202,17 @@ const TransactionMonitor = () => {
             onChange={(e) =>
               setFilter({ ...filter, startDate: e.target.value })
             }
-            className='input'
+            className='input w-full'
             placeholder='Start Date'
           />
           <input
             type='date'
             value={filter.endDate}
             onChange={(e) => setFilter({ ...filter, endDate: e.target.value })}
-            className='input'
+            className='input w-full'
             placeholder='End Date'
           />
-          <button onClick={fetchData} className='btn btn-primary'>
+          <button onClick={fetchData} className='btn'>
             Apply
           </button>
         </div>
@@ -228,25 +224,25 @@ const TransactionMonitor = () => {
           <table className='w-full'>
             <thead className='bg-gray-50'>
               <tr>
-                <th className='px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase'>
+                <th className='px-4 py-3 text-left text-xs font-medium text-text/60 uppercase'>
                   ID
                 </th>
-                <th className='px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase'>
+                <th className='px-4 py-3 text-left text-xs font-medium text-text/60 uppercase'>
                   User
                 </th>
-                <th className='px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase'>
+                <th className='px-4 py-3 text-left text-xs font-medium text-text/60 uppercase'>
                   Event
                 </th>
-                <th className='px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase'>
+                <th className='px-4 py-3 text-right text-xs font-medium text-text/60 uppercase'>
                   Amount
                 </th>
-                <th className='px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase'>
+                <th className='px-4 py-3 text-center text-xs font-medium text-text/60 uppercase'>
                   Status
                 </th>
-                <th className='px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase'>
+                <th className='px-4 py-3 text-left text-xs font-medium text-text/60 uppercase'>
                   Date
                 </th>
-                <th className='px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase'>
+                <th className='px-4 py-3 text-center text-xs font-medium text-text/60 uppercase'>
                   Actions
                 </th>
               </tr>
@@ -269,7 +265,7 @@ const TransactionMonitor = () => {
                   <td className='px-4 py-3 text-center'>
                     {getStatusBadge(tx.status)}
                   </td>
-                  <td className='px-4 py-3 text-sm text-gray-500'>
+                  <td className='px-4 py-3 text-sm text-text/60'>
                     {new Date(tx.createdAt).toLocaleDateString()}
                   </td>
                   <td className='px-4 py-3 text-center'>
@@ -285,7 +281,7 @@ const TransactionMonitor = () => {
           </table>
         </div>
         {transactions.length === 0 && (
-          <div className='p-8 text-center text-gray-500'>
+          <div className='p-8 text-center text-text/60'>
             No transactions found
           </div>
         )}
@@ -306,39 +302,39 @@ const TransactionMonitor = () => {
 
             <div className='space-y-4'>
               <div className='flex justify-between'>
-                <span className='text-gray-500'>Status</span>
+                <span className='text-text/60'>Status</span>
                 {getStatusBadge(selectedTransaction.status)}
               </div>
               <div className='flex justify-between'>
-                <span className='text-gray-500'>Amount</span>
+                <span className='text-text/60'>Amount</span>
                 <span className='font-bold'>
                   ₦{selectedTransaction.amount?.toLocaleString()}
                 </span>
               </div>
               <div className='flex justify-between'>
-                <span className='text-gray-500'>Refunded</span>
+                <span className='text-text/60'>Refunded</span>
                 <span>
                   ₦{selectedTransaction.totalRefunded?.toLocaleString() || 0}
                 </span>
               </div>
               <div className='flex justify-between'>
-                <span className='text-gray-500'>User</span>
+                <span className='text-text/60'>User</span>
                 <span>{selectedTransaction.user?.email}</span>
               </div>
               <div className='flex justify-between'>
-                <span className='text-gray-500'>Gateway</span>
+                <span className='text-text/60'>Gateway</span>
                 <span className='capitalize'>
                   {selectedTransaction.gateway?.provider}
                 </span>
               </div>
               <div className='flex justify-between'>
-                <span className='text-gray-500'>Reference</span>
+                <span className='text-text/60'>Reference</span>
                 <span className='font-mono text-sm'>
                   {selectedTransaction.gateway?.reference}
                 </span>
               </div>
               <div className='flex justify-between'>
-                <span className='text-gray-500'>Retries</span>
+                <span className='text-text/60'>Retries</span>
                 <span>
                   {selectedTransaction.retryCount} /{" "}
                   {selectedTransaction.maxRetries}

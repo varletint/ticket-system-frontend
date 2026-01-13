@@ -81,11 +81,11 @@ const ManageValidators = () => {
     return (
       <div className='max-w-4xl mx-auto px-4 py-8'>
         <div className='animate-pulse'>
-          <div className='h-8 bg-gray-200 rounded w-1/3 mb-4'></div>
-          <div className='h-4 bg-gray-200 rounded w-1/2 mb-8'></div>
+          <div className='h-8 bg-gray-200 w-1/3 mb-4'></div>
+          <div className='h-4 bg-gray-200 w-1/2 mb-8'></div>
           <div className='space-y-4'>
             {[1, 2, 3].map((i) => (
-              <div key={i} className='h-16 bg-gray-200 rounded'></div>
+              <div key={i} className='h-16 bg-gray-200'></div>
             ))}
           </div>
         </div>
@@ -99,11 +99,11 @@ const ManageValidators = () => {
       <div className='mb-6'>
         <Link
           to='/organizer/events'
-          className='text-primary-600 hover:text-primary-700 flex items-center gap-1 text-sm mb-2'>
+          className='text-text hover:text-text/70 flex items-center gap-1 text-sm mb-2'>
           <HiArrowLeft /> Back to Events
         </Link>
-        <h1 className='text-2xl font-bold text-gray-900'>Manage Validators</h1>
-        <p className='text-gray-500'>{event?.title}</p>
+        <h1 className='text-2xl font-bold text-text'>Manage Validators</h1>
+        <p className='text-text/90'>{event?.title}</p>
       </div>
 
       {/* Messages */}
@@ -122,21 +122,21 @@ const ManageValidators = () => {
       {!showAddForm && (
         <button
           onClick={() => setShowAddForm(true)}
-          className='btn-primary flex items-center gap-2 mb-6'>
+          className='btn flex items-center gap-2 mb-6'>
           <HiUserAdd /> Add Validator
         </button>
       )}
 
       {/* Add Validator Form */}
       {showAddForm && (
-        <div className='card p-6 mb-6'>
-          <h2 className='text-lg font-semibold text-gray-900 mb-4'>
+        <div className='card p-2 mb-6'>
+          <h2 className='text-lg font-semibold text-text mb-4'>
             Add New Validator
           </h2>
           <form onSubmit={handleSubmit} className='space-y-4'>
             <div className='grid md:grid-cols-2 gap-4'>
               <div>
-                <label className='block text-sm font-medium text-gray-700 mb-1'>
+                <label className='block text-sm font-medium text-text/90 mb-1'>
                   Full Name *
                 </label>
                 <input
@@ -145,12 +145,12 @@ const ManageValidators = () => {
                   onChange={(e) =>
                     setFormData({ ...formData, fullName: e.target.value })
                   }
-                  className='input'
+                  className='input w-full'
                   required
                 />
               </div>
               <div>
-                <label className='block text-sm font-medium text-gray-700 mb-1'>
+                <label className='block text-sm font-medium text-text/90 mb-1'>
                   Email *
                 </label>
                 <input
@@ -159,12 +159,12 @@ const ManageValidators = () => {
                   onChange={(e) =>
                     setFormData({ ...formData, email: e.target.value })
                   }
-                  className='input'
+                  className='input w-full'
                   required
                 />
               </div>
               <div>
-                <label className='block text-sm font-medium text-gray-700 mb-1'>
+                <label className='block text-sm font-medium text-text/90 mb-1'>
                   Password *
                 </label>
                 <input
@@ -173,13 +173,13 @@ const ManageValidators = () => {
                   onChange={(e) =>
                     setFormData({ ...formData, password: e.target.value })
                   }
-                  className='input'
+                  className='input w-full'
                   required
                   minLength={6}
                 />
               </div>
               <div>
-                <label className='block text-sm font-medium text-gray-700 mb-1'>
+                <label className='block text-sm font-medium text-text/90 mb-1'>
                   Phone (optional)
                 </label>
                 <input
@@ -188,21 +188,21 @@ const ManageValidators = () => {
                   onChange={(e) =>
                     setFormData({ ...formData, phone: e.target.value })
                   }
-                  className='input'
+                  className='input w-full'
                 />
               </div>
             </div>
             <div className='flex gap-3'>
               <button
                 type='submit'
-                className='btn-primary'
+                className='btn w-full'
                 disabled={submitting}>
                 {submitting ? "Adding..." : "Add Validator"}
               </button>
               <button
                 type='button'
                 onClick={() => setShowAddForm(false)}
-                className='btn-outline'>
+                className='btn w-full'>
                 Cancel
               </button>
             </div>
@@ -213,12 +213,12 @@ const ManageValidators = () => {
       {/* Validators List */}
       <div className='card'>
         <div className='p-4 border-b border-gray-100'>
-          <h2 className='font-semibold text-gray-900'>
+          <h2 className='font-semibold text-text'>
             Validators ({validators.length})
           </h2>
         </div>
         {validators.length === 0 ? (
-          <div className='p-8 text-center text-gray-500'>
+          <div className='p-8 text-center text-text/90'>
             No validators assigned to this event yet.
           </div>
         ) : (
@@ -228,10 +228,10 @@ const ManageValidators = () => {
                 key={validator._id || validator.id}
                 className='p-4 flex items-center justify-between'>
                 <div>
-                  <h3 className='font-medium text-gray-900'>
+                  <h3 className='font-medium text-text'>
                     {validator.fullName}
                   </h3>
-                  <div className='flex items-center gap-4 text-sm text-gray-500 mt-1'>
+                  <div className='flex items-center gap-4 text-sm text-text/90 mt-1'>
                     <span className='flex items-center gap-1'>
                       <HiMail className='text-gray-400' />
                       {validator.email}

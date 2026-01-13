@@ -156,7 +156,7 @@ const OrganizerDashboard = () => {
 
         {/* Recent Events */}
         <div className='card p-2'>
-          <div className='p-4 border-b border-text/50'>
+          <div className='p-2 border-b border-text/50'>
             <h2 className='font-semibold text-text'>Recent Events</h2>
           </div>
           {events.length === 0 ? (
@@ -168,7 +168,7 @@ const OrganizerDashboard = () => {
               {events.slice(0, 5).map((event) => (
                 <div
                   key={event._id}
-                  className='p-4 flex items-center justify-between'>
+                  className='p-2 flex items-center justify-between'>
                   <div>
                     <h3 className='font-medium text-text'>{event.title}</h3>
                     <p className='text-sm text-text/50'>

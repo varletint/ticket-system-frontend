@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import { HiTicket, HiMenu, HiX } from "react-icons/hi";
+import { HiTicket, HiMenu, HiX, HiMoon, HiSun } from "react-icons/hi";
 import { useState } from "react";
 import { useApplyTheme } from "../hooks/useApplyTheme";
 import { useThemeStore } from "../store/themeStore";
@@ -21,11 +21,18 @@ const Navbar = () => {
   return (
     <nav className='bg-surface sticky border-b border-text top-0 z-50 backdrop-blur-xs'>
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
-        <div className='flex justify-between h-16'>
+        <div className='flex items-center justify-between h-16'>
           {/* Logo */}
-          <HiTicket className='text-3xl text-text' onClick={toggleTheme} />
+          {/* <HiTicket className='text-3xl text-text' onClick={ toggleTheme } /> */}
+          {theme === "dark" ? (
+            <HiSun className='text-xl text-text' onClick={toggleTheme} />
+          ) : (
+            <HiMoon className='text-xl text-text' onClick={toggleTheme} />
+          )}
           <Link to='/' className='flex items-center gap-2'>
-            <span className='font-bold text-xl text-text'>TicketHub</span>
+            <span className='font-bold text-xl text-text font-[Plus_Jakarta_Sans]'>
+              Getick
+            </span>
           </Link>
 
           {/* Desktop Navigation */}

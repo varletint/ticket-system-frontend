@@ -83,21 +83,19 @@ const MyTickets = () => {
 
   return (
     <div className='max-w-4xl mx-auto px-4 py-8'>
-      <h1 className='text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2'>
-        <HiTicket className='text-primary-600' />
+      <h1 className='text-2xl font-bold text-text mb-6 flex items-center gap-2'>
+        {/* <HiTicket className='text-text' /> */}
         My Tickets
       </h1>
 
       {tickets.length === 0 ? (
         <div className='text-center py-16 card'>
           <div className='text-6xl mb-4'>🎫</div>
-          <h3 className='text-xl font-semibold text-gray-900'>
-            No tickets yet
-          </h3>
+          <h3 className='text-xl font-semibold text-text'>No tickets yet</h3>
           <p className='text-gray-500 mt-2 mb-6'>
             Your purchased tickets will appear here
           </p>
-          <Link to='/events' className='btn-primary'>
+          <Link to='/events' className='btn'>
             Browse Events
           </Link>
         </div>
@@ -110,10 +108,10 @@ const MyTickets = () => {
             return (
               <div
                 key={ticket._id}
-                className={`card p-6 ${isPast ? "opacity-60" : ""}`}>
-                <div className='flex flex-col sm:flex-row gap-4'>
+                className={`card p- ${isPast ? "opacity-60" : ""}`}>
+                <div className='flex flex-col sm:flex-row gap-1'>
                   {/* Event Image */}
-                  <div className='w-full sm:w-32 h-24 rounded-lg overflow-hidden bg-gradient-to-br from-primary-500 to-accent-500 flex-shrink-0'>
+                  <div className='w-full sm:w-32 h-24 overflow-hidden bg-gradient-to-br from-secondary-surface to-text/20 flex-shrink-0'>
                     {ticket.event.bannerImage ? (
                       <img
                         src={ticket.event.bannerImage}
@@ -121,27 +119,27 @@ const MyTickets = () => {
                         className='w-full h-full object-cover'
                       />
                     ) : (
-                      <div className='w-full h-full flex items-center justify-center text-white text-2xl font-bold opacity-50'>
-                        {ticket.event.title?.charAt(0)}
+                      <div className='w-full h-full flex items-center justify-center text-text text-2xl font-bold'>
+                        {ticket.event.title?.charAt(0).toUpperCase()}
                       </div>
                     )}
                   </div>
 
                   {/* Ticket Info */}
-                  <div className='flex-1'>
+                  <div className='flex-1 px-2 pb-2'>
                     <div className='flex items-start justify-between'>
                       <div>
-                        <h3 className='font-semibold text-gray-900'>
+                        <h3 className='font-semibold text-text'>
                           {ticket.event.title}
                         </h3>
                         {ticket.event.artist && (
-                          <p className='text-primary-600 text-sm'>
+                          <p className='text-text text-sm'>
                             {ticket.event.artist}
                           </p>
                         )}
                       </div>
                       <span
-                        className={`badge ${
+                        className={`badge text-text/90 ${
                           ticket.status === "valid"
                             ? "badge-success"
                             : ticket.status === "used"
@@ -152,7 +150,7 @@ const MyTickets = () => {
                       </span>
                     </div>
 
-                    <div className='mt-3 flex flex-wrap gap-4 text-sm text-gray-500'>
+                    <div className='mt-3 flex flex-wrap gap-4 text-sm text-text/80'>
                       <div className='flex items-center gap-1'>
                         <HiCalendar />
                         {eventDate.toLocaleDateString("en-NG", {
@@ -172,14 +170,17 @@ const MyTickets = () => {
                     </div>
 
                     <div className='mt-4 flex items-center justify-between'>
-                      <span className='font-semibold text-gray-900'>
-                        ₦{ticket.price?.toLocaleString()}
+                      <span className='font-semibold text-text'>
+                        {new Intl.NumberFormat("en-NG", {
+                          style: "currency",
+                          currency: "NGN",
+                        }).format(ticket.price)}
                       </span>
 
                       {ticket.status === "valid" && (
                         <button
                           onClick={() => handleDownload(ticket._id)}
-                          className='btn-primary text-sm flex items-center gap-2'>
+                          className='btn text-sm flex items-center gap-2'>
                           <HiDownload />
                           Download PDF
                         </button>

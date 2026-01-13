@@ -18,6 +18,7 @@ This is the frontend application for the Ticket System, built with React, Vite, 
 - **Icons**: React Icons
 - **QR Scanning**: html5-qrcode
 - **API Communication**: Axios
+- **theme setting enhancement**: Theme
 
 ## Getting Started
 

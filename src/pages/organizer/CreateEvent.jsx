@@ -90,7 +90,7 @@ const CreateEvent = () => {
 
         <form onSubmit={handleSubmit} className='space-y-6'>
           {/* Basic Info */}
-          <div className='card p-6'>
+          <div className='card p-2'>
             <h2 className='text-lg font-semibold text-text mb-4'>
               Event Details
             </h2>
@@ -105,7 +105,7 @@ const CreateEvent = () => {
                   name='title'
                   value={formData.title}
                   onChange={handleChange}
-                  className='input'
+                  className='input w-full'
                   placeholder='Summer Music Festival 2024'
                   required
                 />
@@ -121,7 +121,7 @@ const CreateEvent = () => {
                     name='artist'
                     value={formData.artist}
                     onChange={handleChange}
-                    className='input'
+                    className='input w-full'
                     placeholder='Burna Boy, Wizkid'
                   />
                 </div>
@@ -133,7 +133,7 @@ const CreateEvent = () => {
                     name='category'
                     value={formData.category}
                     onChange={handleChange}
-                    className='input'>
+                    className='input w-full'>
                     <option value='concert'>Concert</option>
                     <option value='festival'>Festival</option>
                     <option value='theater'>Theater</option>
@@ -152,7 +152,7 @@ const CreateEvent = () => {
                   name='description'
                   value={formData.description}
                   onChange={handleChange}
-                  className='input min-h-[100px]'
+                  className='input min-h-[100px] w-full'
                   placeholder='Describe your event...'
                   required
                 />
@@ -167,7 +167,7 @@ const CreateEvent = () => {
                   name='eventDate'
                   value={formData.eventDate}
                   onChange={handleChange}
-                  className='input'
+                  className='input w-full'
                   required
                 />
               </div>
@@ -175,7 +175,7 @@ const CreateEvent = () => {
           </div>
 
           {/* Venue */}
-          <div className='card p-6'>
+          <div className='card p-2'>
             <h2 className='text-lg font-semibold text-text mb-4'>Venue</h2>
 
             <div className='grid gap-4'>
@@ -188,7 +188,7 @@ const CreateEvent = () => {
                   name='venue.name'
                   value={formData.venue.name}
                   onChange={handleChange}
-                  className='input'
+                  className='input w-full'
                   placeholder='Eko Convention Centre'
                   required
                 />
@@ -202,7 +202,7 @@ const CreateEvent = () => {
                   name='venue.address'
                   value={formData.venue.address}
                   onChange={handleChange}
-                  className='input'
+                  className='input w-full'
                   placeholder='123 Main Street'
                 />
               </div>
@@ -216,7 +216,7 @@ const CreateEvent = () => {
                     name='venue.city'
                     value={formData.venue.city}
                     onChange={handleChange}
-                    className='input'
+                    className='input w-full'
                     placeholder='Lagos'
                     required
                   />
@@ -230,7 +230,7 @@ const CreateEvent = () => {
                     name='venue.state'
                     value={formData.venue.state}
                     onChange={handleChange}
-                    className='input'
+                    className='input w-full'
                     placeholder='Lagos State'
                   />
                 </div>
@@ -239,13 +239,13 @@ const CreateEvent = () => {
           </div>
 
           {/* Ticket Tiers */}
-          <div className='card p-6'>
+          <div className='card p-2'>
             <div className='flex items-center justify-between mb-4'>
               <h2 className='text-lg font-semibold text-text'>Ticket Tiers</h2>
               <button
                 type='button'
                 onClick={addTier}
-                className='btn-secondary text-sm flex items-center gap-1'>
+                className='btn text-sm flex items-center gap-1'>
                 <HiPlus /> Add Tier
               </button>
             </div>

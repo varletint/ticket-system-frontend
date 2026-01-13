@@ -139,7 +139,7 @@ const EditEvent = () => {
 
       <form onSubmit={handleSubmit} className='space-y-6'>
         {/* Basic Info */}
-        <div className='card p-6'>
+        <div className='card p-2'>
           <h2 className='text-lg font-semibold text-gray-900 mb-4'>
             Event Details
           </h2>
@@ -224,7 +224,7 @@ const EditEvent = () => {
         </div>
 
         {/* Venue */}
-        <div className='card p-6'>
+        <div className='card p-2'>
           <h2 className='text-lg font-semibold text-gray-900 mb-4'>Venue</h2>
 
           <div className='grid gap-4'>
@@ -288,7 +288,7 @@ const EditEvent = () => {
         </div>
 
         {/* Ticket Tiers */}
-        <div className='card p-6'>
+        <div className='card p-2'>
           <div className='flex items-center justify-between mb-4'>
             <h2 className='text-lg font-semibold text-gray-900'>
               Ticket Tiers

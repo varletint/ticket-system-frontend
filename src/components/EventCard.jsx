@@ -38,7 +38,7 @@ const EventCard = ({ event }) => {
         )}
 
         {/* Date badge */}
-        <div className='absolute top-3 left-3 bg-secondary px-3 py-1 shadow-lg'>
+        <div className='absolute top-3 left-3 bg-secondary px-3 py-1 border border-text shadow-md'>
           <div className='text-center'>
             <div className='text-xs text-text uppercase'>
               {eventDate.toLocaleDateString("en-NG", { month: "short" })}

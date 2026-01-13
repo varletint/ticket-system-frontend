@@ -60,64 +60,64 @@ const ManageEvents = () => {
   return (
     <div className='max-w-6xl mx-auto px-4 py-8'>
       <div className='flex items-center justify-between mb-6'>
-        <h1 className='text-2xl font-bold text-gray-900'>Manage Events</h1>
-        <Link
-          to='/organizer/create'
-          className='btn-primary flex items-center gap-2'>
-          <HiPlus /> Create Event
+        <h1 className='text-2xl font-bold text-text'>Manage Events</h1>
+        <Link to='/organizer/create' className='btn flex items-center gap-2'>
+          <HiPlus />
         </Link>
       </div>
 
       {events.length === 0 ? (
-        <div className='card p-12 text-center'>
+        <div className='card text-center'>
           <div className='text-6xl mb-4'>📅</div>
-          <h3 className='text-xl font-semibold text-gray-900'>No events yet</h3>
-          <p className='text-gray-500 mt-2 mb-6'>
+          <h3 className='text-xl font-semibold text-text'>No events yet</h3>
+          <p className='text-text/60 mt-2 mb-6'>
             Create your first event to get started
           </p>
           <Link
             to='/organizer/create'
-            className='btn-primary inline-flex items-center gap-2'>
+            className='btn inline-flex items-center gap-2'>
             <HiPlus /> Create Event
           </Link>
         </div>
       ) : (
-        <div className='card overflow-hidden'>
+        <div className='card overflow-x-scroll'>
           <table className='w-full'>
-            <thead className='bg-gray-50'>
+            <thead className='bg-text/10'>
               <tr>
-                <th className='px-4 py-3 text-left text-sm font-medium text-gray-500'>
+                <th className='px-4 py-3 text-left text-sm font-medium text-text/90'>
                   Event
                 </th>
-                <th className='px-4 py-3 text-left text-sm font-medium text-gray-500'>
+                <th className='px-4 py-3 text-left text-sm font-medium text-text/90'>
                   Date
                 </th>
-                <th className='px-4 py-3 text-left text-sm font-medium text-gray-500'>
+                <th className='px-4 py-3 text-left text-sm font-medium text-text/90'>
                   Status
                 </th>
-                <th className='px-4 py-3 text-left text-sm font-medium text-gray-500'>
+                <th className='px-4 py-3 text-left text-sm font-medium text-text/90'>
                   Sold
                 </th>
-                <th className='px-4 py-3 text-left text-sm font-medium text-gray-500'>
+                <th className='px-4 py-3 text-left text-sm font-medium text-text/90'>
                   Revenue
                 </th>
-                <th className='px-4 py-3 text-right text-sm font-medium text-gray-500'>
+                <th className='px-4 py-3 text-right text-sm font-medium text-text/90'>
                   Actions
                 </th>
               </tr>
             </thead>
-            <tbody className='divide-y divide-gray-100'>
+            <tbody className='divide-y divide-text/10'>
               {events.map((event) => (
-                <tr key={event._id} className='hover:bg-gray-50'>
-                  <td className='px-4 py-4'>
+                <tr key={event._id} className='even:bg-text/5 hover:bg-text/20'>
+                  <td className='px-2 py-2'>
                     <div>
-                      <p className='font-medium text-gray-900'>{event.title}</p>
+                      <p className='font-medium text-text text-nowrap'>
+                        {event.title}
+                      </p>
                       {event.artist && (
-                        <p className='text-sm text-gray-500'>{event.artist}</p>
+                        <p className='text-sm text-text/60'>{event.artist}</p>
                       )}
                     </div>
                   </td>
-                  <td className='px-4 py-4 text-sm text-gray-600'>
+                  <td className='px-4 py-4 text-sm text-text/80 text-nowrap'>
                     {new Date(event.eventDate).toLocaleDateString("en-NG", {
                       month: "short",
                       day: "numeric",
@@ -126,7 +126,7 @@ const ManageEvents = () => {
                   </td>
                   <td className='px-4 py-4'>
                     <span
-                      className={`badge ${
+                      className={`badge text-text/80 ${
                         event.status === "published"
                           ? "badge-success"
                           : event.status === "draft"
@@ -138,30 +138,33 @@ const ManageEvents = () => {
                       {event.status}
                     </span>
                   </td>
-                  <td className='px-4 py-4 text-sm text-gray-600'>
+                  <td className='px-4 py-4 text-sm text-text'>
                     {event.totalTicketsSold || 0}
                   </td>
-                  <td className='px-4 py-4 text-sm font-medium text-gray-900'>
-                    ₦{(event.totalRevenue || 0).toLocaleString()}
+                  <td className='px-4 py-4 text-sm font-medium text-text'>
+                    {new Intl.NumberFormat("en-NG", {
+                      style: "currency",
+                      currency: "NGN",
+                    }).format(event.totalRevenue || 0)}
                   </td>
                   <td className='px-4 py-4'>
                     <div className='flex items-center justify-end gap-2'>
                       <Link
                         to={`/events/${event._id}`}
-                        className='p-2 text-gray-500 hover:text-primary-600'
+                        className='p-2 text-text/60 hover:text-primary-600'
                         title='View'>
                         <HiEye />
                       </Link>
                       <Link
                         to={`/organizer/events/${event._id}/validators`}
-                        className='p-2 text-gray-500 hover:text-primary-600'
+                        className='p-2 text-text/60 hover:text-primary-600'
                         title='Manage Validators'>
                         <HiUserGroup />
                       </Link>
                       {!["completed", "cancelled"].includes(event.status) && (
                         <Link
                           to={`/organizer/edit/${event._id}`}
-                          className='p-2 text-gray-500 hover:text-primary-600'
+                          className='p-2 text-text/60 hover:text-primary-600'
                           title='Edit'>
                           <HiPencil />
                         </Link>

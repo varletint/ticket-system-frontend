@@ -37,7 +37,7 @@
   padding: 0.4rem 1rem;
   padding-left: 2rem;
   border: 1.2px solid var(--color-text);
-  width: 100%;
+  /* width: 100%; */
 }
 
 .input:focus {
@@ -48,21 +48,37 @@
   border: 1.2px solid var(--color-text);
 }
 
-html {
-  background-color: var(--color-surface);
-  font-family: "Outfit", sans-serif;
-  min-height: 100%;
-}
-
-html.dark {
-  background-color: var(--color-surface);
-}
-
 body {
   min-height: 100vh;
   background-color: inherit;
 }
 
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-text);
+  opacity: 0.3;
+  border-radius: 0px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-text) transparent;
+}
+
 .root {
   background: var(--color-primary);
+  font-family: "Plus Jakarta Sans", sans-serif;
 }

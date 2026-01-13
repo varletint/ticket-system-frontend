@@ -51,7 +51,7 @@ const Login = () => {
           <p className='text-text mt-2'>Sign in to your account</p>
         </div>
 
-        <div className='card p-6'>
+        <div className='card p-2'>
           {error && (
             <div className='mb-4 p-3 bg-red-50 border border-red-200 text-red-700 rounded-lg text-sm'>
               {error}
@@ -67,7 +67,7 @@ const Login = () => {
                 type='email'
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className='input'
+                className='input w-full'
                 placeholder='you@example.com'
                 required
               />
@@ -81,7 +81,7 @@ const Login = () => {
                 type='password'
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className='input'
+                className='input w-full'
                 placeholder='••••••••'
                 required
               />
