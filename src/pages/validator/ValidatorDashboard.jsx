@@ -28,12 +28,8 @@ const ValidatorDashboard = () => {
   return (
     <div className='max-w-4xl mx-auto px-4 py-8'>
       <div className='flex items-center justify-between mb-6'>
-        <h1 className='text-2xl font-bold text-gray-900'>
-          Validator Dashboard
-        </h1>
-        <Link
-          to='/validator/scan'
-          className='btn-primary flex items-center gap-2'>
+        <h1 className='text-2xl font-bold text-text'>Validator Dashboard</h1>
+        <Link to='/validator/scan' className='btn flex items-center gap-2'>
           <HiQrcode /> Scan Tickets
         </Link>
       </div>
@@ -41,17 +37,17 @@ const ValidatorDashboard = () => {
       {events.length === 0 ? (
         <div className='card p-12 text-center'>
           <div className='text-6xl mb-4'>📋</div>
-          <h3 className='text-xl font-semibold text-gray-900'>
+          <h3 className='text-xl font-semibold text-text'>
             No assigned events
           </h3>
-          <p className='text-gray-500 mt-2'>
+          <p className='text-text mt-2'>
             You haven't been assigned to any events yet. Contact an admin to get
             assigned.
           </p>
         </div>
       ) : (
         <>
-          <p className='text-gray-600 mb-6'>
+          <p className='text-text mb-6'>
             You are assigned to validate tickets for the following events:
           </p>
 
@@ -60,10 +56,10 @@ const ValidatorDashboard = () => {
               <div key={event._id} className='card p-2'>
                 <div className='flex items-start justify-between'>
                   <div>
-                    <h3 className='font-semibold text-lg text-gray-900'>
+                    <h3 className='font-semibold text-lg text-text'>
                       {event.title}
                     </h3>
-                    <div className='mt-2 flex flex-wrap gap-4 text-sm text-gray-500'>
+                    <div className='mt-2 flex flex-wrap gap-4 text-sm text-text'>
                       <span className='flex items-center gap-1'>
                         <HiCalendar />
                         {new Date(event.eventDate).toLocaleDateString("en-NG", {
@@ -83,7 +79,7 @@ const ValidatorDashboard = () => {
 
                   <Link
                     to={`/validator/scan?event=${event._id}`}
-                    className='btn-primary flex items-center gap-2'>
+                    className='btn flex items-center gap-2'>
                     <HiQrcode /> Scan
                   </Link>
                 </div>

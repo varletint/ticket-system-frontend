@@ -126,34 +126,34 @@ const Scanner = () => {
 
   return (
     <div className='max-w-lg mx-auto px-4 py-8'>
-      <h1 className='text-2xl font-bold text-gray-900 mb-6 text-center'>
+      <h1 className='text-2xl font-bold text-text mb-6 text-center'>
         Ticket Scanner
       </h1>
 
       {/* Stats */}
       {stats && (
         <div className='card p-4 mb-6'>
-          <h2 className='text-sm font-medium text-gray-500 mb-2'>
+          <h2 className='text-sm font-medium text-text/90 mb-2'>
             {stats.event?.title}
           </h2>
           <div className='grid grid-cols-3 gap-4 text-center'>
             <div>
-              <p className='text-2xl font-bold text-gray-900'>
+              <p className='text-2xl font-bold text-text'>
                 {stats.stats.checkedIn}
               </p>
-              <p className='text-xs text-gray-500'>Checked In</p>
+              <p className='text-xs text-text/90'>Checked In</p>
             </div>
             <div>
-              <p className='text-2xl font-bold text-gray-900'>
+              <p className='text-2xl font-bold text-text'>
                 {stats.stats.pending}
               </p>
-              <p className='text-xs text-gray-500'>Pending</p>
+              <p className='text-xs text-text/90'>Pending</p>
             </div>
             <div>
               <p className='text-2xl font-bold text-primary-600'>
                 {stats.stats.checkInRate}%
               </p>
-              <p className='text-xs text-gray-500'>Rate</p>
+              <p className='text-xs text-text/90'>Rate</p>
             </div>
           </div>
         </div>
@@ -163,14 +163,14 @@ const Scanner = () => {
       {scanning && !result ? (
         <div className='card overflow-hidden'>
           <div id='qr-reader' className='w-full'></div>
-          <p className='p-4 text-center text-sm text-gray-500'>
+          <p className='p-4 text-center text-sm text-text/90'>
             Point camera at the QR code on the ticket
           </p>
         </div>
       ) : isLoading ? (
         <div className='card p-8 text-center'>
           <div className='animate-spin rounded-full h-16 w-16 border-4 border-primary-500 border-t-transparent mx-auto'></div>
-          <p className='mt-4 text-gray-600'>Validating ticket...</p>
+          <p className='mt-4 text-text/90'>Validating ticket...</p>
         </div>
       ) : (
         <div
@@ -197,14 +197,14 @@ const Scanner = () => {
             </>
           )}
 
-          <p className='text-gray-600 mt-2'>{result?.message}</p>
+          <p className='text-text/80 mt-2'>{result?.message}</p>
 
           {result?.ticket && (
             <div className='mt-6 p-4 bg-white rounded-lg text-left'>
               <div className='grid grid-cols-2 gap-2 text-sm'>
-                <span className='text-gray-500'>Name:</span>
+                <span className='text-text/90'>Name:</span>
                 <span className='font-medium'>{result.ticket.holderName}</span>
-                <span className='text-gray-500'>Ticket:</span>
+                <span className='text-text/90'>Ticket:</span>
                 <span className='font-medium'>{result.ticket.tierName}</span>
               </div>
             </div>
@@ -212,7 +212,7 @@ const Scanner = () => {
 
           <button
             onClick={resetScanner}
-            className='btn-primary mt-6 flex items-center gap-2 mx-auto px-6 py-3 text-lg'>
+            className='btn mt-6 flex items-center gap-2 mx-auto px-6 py-3 text-lg'>
             <HiQrcode className='text-xl' /> Scan Another Ticket
           </button>
         </div>
