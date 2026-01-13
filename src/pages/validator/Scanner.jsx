@@ -132,7 +132,7 @@ const Scanner = () => {
 
       {/* Stats */}
       {stats && (
-        <div className='card p-4 mb-6'>
+        <div className='card p-2 mb-6'>
           <h2 className='text-sm font-medium text-text/90 mb-2'>
             {stats.event?.title}
           </h2>
@@ -150,7 +150,7 @@ const Scanner = () => {
               <p className='text-xs text-text/90'>Pending</p>
             </div>
             <div>
-              <p className='text-2xl font-bold text-primary-600'>
+              <p className='text-2xl font-bold text-text'>
                 {stats.stats.checkInRate}%
               </p>
               <p className='text-xs text-text/90'>Rate</p>
@@ -163,7 +163,7 @@ const Scanner = () => {
       {scanning && !result ? (
         <div className='card overflow-hidden'>
           <div id='qr-reader' className='w-full'></div>
-          <p className='p-4 text-center text-sm text-text/90'>
+          <p className='p-2 py-3 text-center text-sm text-text/90'>
             Point camera at the QR code on the ticket
           </p>
         </div>
@@ -174,10 +174,8 @@ const Scanner = () => {
         </div>
       ) : (
         <div
-          className={`card p-8 text-center ${
-            result?.success
-              ? "bg-green-50 border-green-200"
-              : "bg-red-50 border-red-200"
+          className={`card p-4 text-center ${
+            result?.success ? "bg-green-50 border-green-200" : " "
           }`}>
           {result?.success ? (
             <>
@@ -188,7 +186,7 @@ const Scanner = () => {
             </>
           ) : (
             <>
-              <HiXCircle className='text-7xl text-red-500 mx-auto' />
+              <HiXCircle className='text-7xl text-red-500 mx-auto  rounded-full bg-white' />
               <h2 className='text-2xl font-bold text-red-700 mt-4'>
                 {result?.status === "ALREADY_USED"
                   ? "Already Scanned"
@@ -197,10 +195,10 @@ const Scanner = () => {
             </>
           )}
 
-          <p className='text-text/80 mt-2'>{result?.message}</p>
+          <p className='text-text mt-2'>{result?.message}</p>
 
           {result?.ticket && (
-            <div className='mt-6 p-4 bg-white rounded-lg text-left'>
+            <div className='mt-2 p-2 bg-text text-left'>
               <div className='grid grid-cols-2 gap-2 text-sm'>
                 <span className='text-text/90'>Name:</span>
                 <span className='font-medium'>{result.ticket.holderName}</span>

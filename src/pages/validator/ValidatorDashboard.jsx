@@ -30,7 +30,7 @@ const ValidatorDashboard = () => {
       <div className='flex items-center justify-between mb-6'>
         <h1 className='text-2xl font-bold text-text'>Validator Dashboard</h1>
         <Link to='/validator/scan' className='btn flex items-center gap-2'>
-          <HiQrcode /> Scan Tickets
+          <HiQrcode /> scan
         </Link>
       </div>
 
@@ -59,7 +59,7 @@ const ValidatorDashboard = () => {
                     <h3 className='font-semibold text-lg text-text'>
                       {event.title}
                     </h3>
-                    <div className='mt-2 flex flex-wrap gap-4 text-sm text-text'>
+                    <div className='mt flex flex-col text-sm text-text/80'>
                       <span className='flex items-center gap-1'>
                         <HiCalendar />
                         {new Date(event.eventDate).toLocaleDateString("en-NG", {
