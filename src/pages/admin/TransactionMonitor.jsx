@@ -109,73 +109,76 @@ const TransactionMonitor = () => {
       <div className='flex justify-between items-center mb-6'>
         <h1 className='text-2xl font-bold text-text'>Transaction Monitor</h1>
         <button onClick={fetchData} className='btn flex items-center gap-2'>
-          <HiRefresh /> Refresh
+          <HiRefresh />
         </button>
       </div>
 
       {/* Stats Cards */}
       <div className='grid grid-cols-2 md:grid-cols-5 gap-4 mb-6'>
-        <div className='card p-4'>
+        <div className='card p-2'>
           <div className='flex items-center gap-3'>
-            <div className='p-2 bg-green-100 rounded-lg'>
+            <div className='p-2 bg-green-100 '>
               <HiCheck className='text-green-600' />
             </div>
             <div>
               <p className='text-xs text-text/60'>Completed</p>
-              <p className='text-xl font-bold'>
+              <p className='text-xl font-bold text-text/80'>
                 {stats?.summary?.completedCount || 0}
               </p>
             </div>
           </div>
         </div>
-        <div className='card p-4'>
+        <div className='card p-2'>
           <div className='flex items-center gap-3'>
-            <div className='p-2 bg-red-100 rounded-lg'>
+            <div className='p-2 bg-red-100 '>
               <HiExclamation className='text-red-600' />
             </div>
             <div>
               <p className='text-xs text-text/60'>Failed</p>
-              <p className='text-xl font-bold'>
+              <p className='text-xl font-bold text-text/80'>
                 {stats?.summary?.failedCount || 0}
               </p>
             </div>
           </div>
         </div>
-        <div className='card p-4'>
+        <div className='card p-2'>
           <div className='flex items-center gap-3'>
-            <div className='p-2 bg-blue-100 rounded-lg'>
+            <div className='p-2 bg-blue-100 '>
               <HiClock className='text-blue-600' />
             </div>
             <div>
               <p className='text-xs text-text/60'>Pending</p>
-              <p className='text-xl font-bold'>
+              <p className='text-xl font-bold text-text/80'>
                 {stats?.summary?.pendingCount || 0}
               </p>
             </div>
           </div>
         </div>
-        <div className='card p-4'>
+        <div className='card p-2'>
           <div className='flex items-center gap-3'>
-            <div className='p-2 bg-purple-100 rounded-lg'>
+            <div className='p-2 bg-purple-100 '>
               <HiCurrencyDollar className='text-purple-600' />
             </div>
             <div>
               <p className='text-xs text-text/60'>Refunded</p>
-              <p className='text-xl font-bold'>
+              <p className='text-xl font-bold text-text/80'>
                 {stats?.summary?.refundedCount || 0}
               </p>
             </div>
           </div>
         </div>
-        <div className='card p-4'>
+        <div className='bg-secondary-surface p-2'>
           <div className='flex items-center gap-3'>
-            <div className='p-2 bg-primary-100 rounded-lg'>
-              <HiCurrencyDollar className='text-primary-600' />
+            <div className='p-2 bg-text/10 '>
+              <HiCurrencyDollar className='text-text/30' />
             </div>
             <div>
               <p className='text-xs text-text/60'>Total Revenue</p>
-              <p className='text-xl font-bold'>
-                ₦{(stats?.summary?.totalAmount || 0).toLocaleString()}
+              <p className='text-base font-bold text-text/80'>
+                {new Intl.NumberFormat("en-NG", {
+                  style: "currency",
+                  currency: "NGN",
+                }).format(stats?.summary?.totalAmount || 0)}
               </p>
             </div>
           </div>
@@ -183,36 +186,49 @@ const TransactionMonitor = () => {
       </div>
 
       {/* Filters */}
-      <div className='card p-4 mb-6'>
-        <div className='flex flex-wrap gap-4'>
-          <select
-            value={filter.status}
-            onChange={(e) => setFilter({ ...filter, status: e.target.value })}
-            className='input w-40'>
-            <option value=''>All Status</option>
-            <option value='initiated'>Initiated</option>
-            <option value='processing'>Processing</option>
-            <option value='completed'>Completed</option>
-            <option value='failed'>Failed</option>
-            <option value='refunded'>Refunded</option>
-          </select>
-          <input
-            type='date'
-            value={filter.startDate}
-            onChange={(e) =>
-              setFilter({ ...filter, startDate: e.target.value })
-            }
-            className='input w-full'
-            placeholder='Start Date'
-          />
-          <input
-            type='date'
-            value={filter.endDate}
-            onChange={(e) => setFilter({ ...filter, endDate: e.target.value })}
-            className='input w-full'
-            placeholder='End Date'
-          />
-          <button onClick={fetchData} className='btn'>
+      <div className='card p-2 mb-6 text-text/90 flex flex-col gap-2'>
+        <div className='grid md:grid-cols-3 gap-4'>
+          <div>
+            <label htmlFor='status'>Status</label>
+            <select
+              value={filter.status}
+              onChange={(e) => setFilter({ ...filter, status: e.target.value })}
+              className='input w-full'>
+              <option value=''>All Status</option>
+              <option value='initiated'>Initiated</option>
+              <option value='processing'>Processing</option>
+              <option value='completed'>Completed</option>
+              <option value='failed'>Failed</option>
+              <option value='refunded'>Refunded</option>
+            </select>
+          </div>
+          <div>
+            <label htmlFor='startDate'>Start Date</label>
+            <input
+              type='date'
+              value={filter.startDate}
+              onChange={(e) =>
+                setFilter({ ...filter, startDate: e.target.value })
+              }
+              className='input w-full'
+              placeholder='Start Date'
+            />
+          </div>
+          <div>
+            <label htmlFor='endDate'>End Date</label>
+            <input
+              type='date'
+              value={filter.endDate}
+              onChange={(e) =>
+                setFilter({ ...filter, endDate: e.target.value })
+              }
+              className='input w-full'
+              placeholder='End Date'
+            />
+          </div>
+        </div>
+        <div className='flex justify-end'>
+          <button onClick={fetchData} className='btn w-full sm:w-50 '>
             Apply
           </button>
         </div>
@@ -222,7 +238,7 @@ const TransactionMonitor = () => {
       <div className='card overflow-hidden'>
         <div className='overflow-x-auto'>
           <table className='w-full'>
-            <thead className='bg-gray-50'>
+            <thead className='bg-text/20'>
               <tr>
                 <th className='px-4 py-3 text-left text-xs font-medium text-text/60 uppercase'>
                   ID
@@ -247,19 +263,19 @@ const TransactionMonitor = () => {
                 </th>
               </tr>
             </thead>
-            <tbody className='divide-y divide-gray-200'>
+            <tbody className='divide-y divide-text/20'>
               {transactions.map((tx) => (
-                <tr key={tx._id} className='hover:bg-gray-50'>
-                  <td className='px-4 py-3 text-sm font-mono'>
+                <tr key={tx._id} className='hover:bg-text/5 even:bg-text/10'>
+                  <td className='px-4 py-3 text-sm font-mono text-text/60'>
                     {tx._id.slice(-8)}
                   </td>
                   <td className='px-4 py-3 text-sm'>
                     {tx.user?.email || "N/A"}
                   </td>
-                  <td className='px-4 py-3 text-sm'>
+                  <td className='px-4 py-3  text-sm text-text/60 text-nowrap'>
                     {tx.event?.title || "N/A"}
                   </td>
-                  <td className='px-4 py-3 text-sm text-right font-medium'>
+                  <td className='px-4 py-3 text-sm text-text/60 text-right font-medium'>
                     ₦{tx.amount?.toLocaleString()}
                   </td>
                   <td className='px-4 py-3 text-center'>
@@ -271,7 +287,7 @@ const TransactionMonitor = () => {
                   <td className='px-4 py-3 text-center'>
                     <button
                       onClick={() => setSelectedTransaction(tx)}
-                      className='text-primary-600 hover:text-primary-800 text-sm'>
+                      className='text-text/80 hover:text-text/60 text-sm'>
                       View
                     </button>
                   </td>

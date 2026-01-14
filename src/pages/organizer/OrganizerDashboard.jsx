@@ -135,7 +135,7 @@ const OrganizerDashboard = () => {
         </div>
 
         {/* Quick Links */}
-        <div className='grid md:grid-cols-2 gap-4 mb-8'>
+        <div className='grid md:grid-cols-3 gap-4 mb-8'>
           <Link
             to='/organizer/events'
             className='card p-2 hover:shadow-md transition-shadow'>
@@ -150,6 +150,14 @@ const OrganizerDashboard = () => {
             <h3 className='font-semibold text-text'>Create New Event</h3>
             <p className='text-gray-500 text-sm mt-1'>
               Set up a new concert or event
+            </p>
+          </Link>
+          <Link
+            to='/organizer/setup-payout'
+            className='card p-2 hover:shadow-md transition-shadow'>
+            <h3 className='font-semibold text-text'>Setup Payout</h3>
+            <p className='text-gray-500 text-sm mt-1'>
+              Configure your payout account
             </p>
           </Link>
         </div>
