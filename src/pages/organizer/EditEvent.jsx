@@ -129,10 +129,10 @@ const EditEvent = () => {
 
   return (
     <div className='max-w-3xl mx-auto px-4 py-8'>
-      <h1 className='text-2xl font-bold text-gray-900 mb-6'>Edit Event</h1>
+      <h1 className='text-2xl font-bold text-text mb-6'>Edit Event</h1>
 
       {error && (
-        <div className='mb-6 p-4 bg-red-50 border border-red-200 text-red-700 rounded-lg'>
+        <div className='mb-6 p-4 bg-red-50 border border-red-200 text-red-700 '>
           {error}
         </div>
       )}
@@ -140,13 +140,13 @@ const EditEvent = () => {
       <form onSubmit={handleSubmit} className='space-y-6'>
         {/* Basic Info */}
         <div className='card p-2'>
-          <h2 className='text-lg font-semibold text-gray-900 mb-4'>
+          <h2 className='text-lg font-semibold text-text mb-4'>
             Event Details
           </h2>
 
           <div className='grid gap-4'>
             <div>
-              <label className='block text-sm font-medium text-gray-700 mb-1'>
+              <label className='block text-sm font-medium text-text mb-1'>
                 Event Title *
               </label>
               <input
@@ -154,7 +154,7 @@ const EditEvent = () => {
                 name='title'
                 value={formData.title}
                 onChange={handleChange}
-                className='input'
+                className='input w-full'
                 placeholder='Summer Music Festival 2024'
                 required
               />
@@ -162,7 +162,7 @@ const EditEvent = () => {
 
             <div className='grid md:grid-cols-2 gap-4'>
               <div>
-                <label className='block text-sm font-medium text-gray-700 mb-1'>
+                <label className='block text-sm font-medium text-text mb-1'>
                   Artist / Performer
                 </label>
                 <input
@@ -170,19 +170,19 @@ const EditEvent = () => {
                   name='artist'
                   value={formData.artist}
                   onChange={handleChange}
-                  className='input'
+                  className='input w-full'
                   placeholder='Burna Boy, Wizkid'
                 />
               </div>
               <div>
-                <label className='block text-sm font-medium text-gray-700 mb-1'>
+                <label className='block text-sm font-medium text-text mb-1'>
                   Category
                 </label>
                 <select
                   name='category'
                   value={formData.category}
                   onChange={handleChange}
-                  className='input'>
+                  className='input w-full'>
                   <option value='concert'>Concert</option>
                   <option value='festival'>Festival</option>
                   <option value='theater'>Theater</option>
@@ -194,7 +194,7 @@ const EditEvent = () => {
             </div>
 
             <div>
-              <label className='block text-sm font-medium text-gray-700 mb-1'>
+              <label className='block text-sm font-medium text-text mb-1'>
                 Description *
               </label>
               <textarea
@@ -208,7 +208,7 @@ const EditEvent = () => {
             </div>
 
             <div>
-              <label className='block text-sm font-medium text-gray-700 mb-1'>
+              <label className='block text-sm font-medium text-text mb-1'>
                 Event Date & Time *
               </label>
               <input
@@ -216,7 +216,7 @@ const EditEvent = () => {
                 name='eventDate'
                 value={formData.eventDate}
                 onChange={handleChange}
-                className='input'
+                className='input w-full'
                 required
               />
             </div>
@@ -225,11 +225,11 @@ const EditEvent = () => {
 
         {/* Venue */}
         <div className='card p-2'>
-          <h2 className='text-lg font-semibold text-gray-900 mb-4'>Venue</h2>
+          <h2 className='text-lg font-semibold text-text mb-4'>Venue</h2>
 
           <div className='grid gap-4'>
             <div>
-              <label className='block text-sm font-medium text-gray-700 mb-1'>
+              <label className='block text-sm font-medium text-text mb-1'>
                 Venue Name *
               </label>
               <input
@@ -237,13 +237,13 @@ const EditEvent = () => {
                 name='venue.name'
                 value={formData.venue.name}
                 onChange={handleChange}
-                className='input'
+                className='input w-full'
                 placeholder='Eko Convention Centre'
                 required
               />
             </div>
             <div>
-              <label className='block text-sm font-medium text-gray-700 mb-1'>
+              <label className='block text-sm font-medium text-text mb-1'>
                 Address
               </label>
               <input
@@ -251,13 +251,13 @@ const EditEvent = () => {
                 name='venue.address'
                 value={formData.venue.address}
                 onChange={handleChange}
-                className='input'
+                className='input w-full'
                 placeholder='123 Main Street'
               />
             </div>
             <div className='grid md:grid-cols-2 gap-4'>
               <div>
-                <label className='block text-sm font-medium text-gray-700 mb-1'>
+                <label className='block text-sm font-medium text-text mb-1'>
                   City *
                 </label>
                 <input
@@ -265,13 +265,13 @@ const EditEvent = () => {
                   name='venue.city'
                   value={formData.venue.city}
                   onChange={handleChange}
-                  className='input'
+                  className='input w-full'
                   placeholder='Lagos'
                   required
                 />
               </div>
               <div>
-                <label className='block text-sm font-medium text-gray-700 mb-1'>
+                <label className='block text-sm font-medium text-text mb-1'>
                   State
                 </label>
                 <input
@@ -279,7 +279,7 @@ const EditEvent = () => {
                   name='venue.state'
                   value={formData.venue.state}
                   onChange={handleChange}
-                  className='input'
+                  className='input w-full'
                   placeholder='Lagos State'
                 />
               </div>
@@ -290,9 +290,7 @@ const EditEvent = () => {
         {/* Ticket Tiers */}
         <div className='card p-2'>
           <div className='flex items-center justify-between mb-4'>
-            <h2 className='text-lg font-semibold text-gray-900'>
-              Ticket Tiers
-            </h2>
+            <h2 className='text-lg font-semibold text-text'>Ticket Tiers</h2>
             <button
               type='button'
               onClick={addTier}
@@ -303,9 +301,9 @@ const EditEvent = () => {
 
           <div className='space-y-4'>
             {formData.ticketTiers.map((tier, index) => (
-              <div key={index} className='p-4 bg-gray-50 rounded-lg'>
+              <div key={index} className='p-4 bg-gray-50 '>
                 <div className='flex items-center justify-between mb-3'>
-                  <span className='text-sm font-medium text-gray-700'>
+                  <span className='text-sm font-medium text-text'>
                     Tier {index + 1}
                   </span>
                   {formData.ticketTiers.length > 1 && (
@@ -319,7 +317,7 @@ const EditEvent = () => {
                 </div>
                 <div className='grid md:grid-cols-4 gap-3'>
                   <div>
-                    <label className='block text-xs text-gray-500 mb-1'>
+                    <label className='block text-xs text-text/70 mb-1'>
                       Name
                     </label>
                     <input
@@ -333,7 +331,7 @@ const EditEvent = () => {
                     />
                   </div>
                   <div>
-                    <label className='block text-xs text-gray-500 mb-1'>
+                    <label className='block text-xs text-text/70 mb-1'>
                       Price (₦)
                     </label>
                     <input
@@ -347,7 +345,7 @@ const EditEvent = () => {
                     />
                   </div>
                   <div>
-                    <label className='block text-xs text-gray-500 mb-1'>
+                    <label className='block text-xs text-text/70 mb-1'>
                       Quantity
                     </label>
                     <input
@@ -361,7 +359,7 @@ const EditEvent = () => {
                     />
                   </div>
                   <div>
-                    <label className='block text-xs text-gray-500 mb-1'>
+                    <label className='block text-xs text-text/70 mb-1'>
                       Max/Person
                     </label>
                     <input
@@ -385,13 +383,13 @@ const EditEvent = () => {
           <button
             type='button'
             onClick={() => navigate(-1)}
-            className='btn-secondary flex-1'>
+            className='btn flex-1'>
             Cancel
           </button>
           <button
             type='submit'
             disabled={saving}
-            className='btn-primary flex-1 disabled:opacity-50'>
+            className='btn flex-1 disabled:opacity-50'>
             {saving ? "Saving..." : "Save Changes"}
           </button>
         </div>
