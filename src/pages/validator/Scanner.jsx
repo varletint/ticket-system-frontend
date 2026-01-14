@@ -196,17 +196,14 @@ const Scanner = () => {
 
       {/* Scanner or Result */}
       {scanning && !result ? (
-        <div className='card overflow-hidden'>
-          {/* Show custom loader while camera initializes */}
-          {!scannerReady && <ScannerLoader message='Initializing camera...' />}
-          <div
-            id='qr-reader'
-            className={`w-full ${!scannerReady ? "hidden" : ""}`}></div>
-          {scannerReady && (
-            <p className='p-2 py-3 text-center text-sm text-text/90'>
-              Point camera at the QR code on the ticket
-            </p>
-          )}
+        <div className='card overflow-hidden relative'>
+          {/* QR Scanner - library shows its own UI for camera permissions */}
+          <div id='qr-reader' className='w-full'></div>
+          <p className='p-2 py-3 text-center text-sm text-text/90'>
+            {scannerReady
+              ? "Point camera at the QR code on the ticket"
+              : "Click the button above to start camera"}
+          </p>
         </div>
       ) : isLoading ? (
         <div className='card p-4 text-center'>
