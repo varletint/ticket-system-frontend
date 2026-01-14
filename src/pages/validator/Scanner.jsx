@@ -4,6 +4,20 @@ import { Html5QrcodeScanner } from "html5-qrcode";
 import { validationAPI } from "../../services/api";
 import { HiCheckCircle, HiXCircle, HiQrcode } from "react-icons/hi";
 
+// Custom Scanner Loading Component with scanning line animation
+const ScannerLoader = ({ message = "Initializing camera..." }) => (
+  <div className='flex flex-col items-center py-8'>
+    <div className='scanner-loader'>
+      <div className='corner tl'></div>
+      <div className='corner tr'></div>
+      <div className='corner bl'></div>
+      <div className='corner br'></div>
+      <HiQrcode className='qr-icon' />
+    </div>
+    <p className='mt-4 text-text/90 text-sm animate-pulse'>{message}</p>
+  </div>
+);
+
 const Scanner = () => {
   const [searchParams] = useSearchParams();
   const eventId = searchParams.get("event");
@@ -13,6 +27,7 @@ const Scanner = () => {
   const [scanning, setScanning] = useState(true);
   const [stats, setStats] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [scannerReady, setScannerReady] = useState(false);
 
   const fetchStats = useCallback(async () => {
     try {
@@ -87,7 +102,17 @@ const Scanner = () => {
     scanner.render(onScanSuccess, onScanError);
     scannerRef.current = scanner;
 
+    // Check for when camera becomes active (video element appears)
+    const checkCameraReady = setInterval(() => {
+      const videoElement = document.querySelector("#qr-reader video");
+      if (videoElement && videoElement.srcObject) {
+        setScannerReady(true);
+        clearInterval(checkCameraReady);
+      }
+    }, 200);
+
     return () => {
+      clearInterval(checkCameraReady);
       if (scannerRef.current) {
         scannerRef.current.clear().catch(console.error);
       }
@@ -99,6 +124,7 @@ const Scanner = () => {
     setResult(null);
     setIsLoading(false);
     setScanning(true);
+    setScannerReady(false);
 
     // Clear the existing scanner and create a fresh one
     if (scannerRef.current) {
@@ -121,6 +147,15 @@ const Scanner = () => {
       scanner.render(onScanSuccess, onScanError);
       scannerRef.current = scanner;
       isProcessingRef.current = false; // Allow new scans
+
+      // Check for when camera becomes active again
+      const checkCameraReady = setInterval(() => {
+        const videoElement = document.querySelector("#qr-reader video");
+        if (videoElement && videoElement.srcObject) {
+          setScannerReady(true);
+          clearInterval(checkCameraReady);
+        }
+      }, 200);
     }, 100);
   };
 
@@ -162,15 +197,20 @@ const Scanner = () => {
       {/* Scanner or Result */}
       {scanning && !result ? (
         <div className='card overflow-hidden'>
-          <div id='qr-reader' className='w-full'></div>
-          <p className='p-2 py-3 text-center text-sm text-text/90'>
-            Point camera at the QR code on the ticket
-          </p>
+          {/* Show custom loader while camera initializes */}
+          {!scannerReady && <ScannerLoader message='Initializing camera...' />}
+          <div
+            id='qr-reader'
+            className={`w-full ${!scannerReady ? "hidden" : ""}`}></div>
+          {scannerReady && (
+            <p className='p-2 py-3 text-center text-sm text-text/90'>
+              Point camera at the QR code on the ticket
+            </p>
+          )}
         </div>
       ) : isLoading ? (
-        <div className='card p-8 text-center'>
-          <div className='animate-spin rounded-full h-16 w-16 border-4 border-primary-500 border-t-transparent mx-auto'></div>
-          <p className='mt-4 text-text/90'>Validating ticket...</p>
+        <div className='card p-4 text-center'>
+          <ScannerLoader message='Validating ticket...' />
         </div>
       ) : (
         <div
