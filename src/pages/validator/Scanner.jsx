@@ -235,7 +235,7 @@ const Scanner = () => {
           <p className='text-text mt-2'>{result?.message}</p>
 
           {result?.ticket && (
-            <div className='mt-2 p-2 bg-text text-left'>
+            <div className='mt-2 p-2 text-left'>
               <div className='grid grid-cols-2 gap-2 text-sm'>
                 <span className='text-text/90'>Name:</span>
                 <span className='font-medium'>{result.ticket.holderName}</span>
