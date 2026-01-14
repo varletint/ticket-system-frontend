@@ -4,6 +4,8 @@ import { HiTicket, HiMenu, HiX, HiMoon, HiSun } from "react-icons/hi";
 import { useState } from "react";
 import { useApplyTheme } from "../hooks/useApplyTheme";
 import { useThemeStore } from "../store/themeStore";
+import getick from "../assets/getick.png";
+import logo from "../assets/logo.png";
 
 const Navbar = () => {
   useApplyTheme();
@@ -25,9 +27,7 @@ const Navbar = () => {
           {/* Logo */}
           <Link to='/' className='flex items-center gap-1'>
             <img
-              src={
-                theme === "dark" ? "/assets/logo-2.png" : "/assets/logo1.png"
-              }
+              src={theme === "dark" ? logo : getick}
               alt='Getick Logo'
               className='h-8 w-auto'
             />

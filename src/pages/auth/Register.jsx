@@ -3,6 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { HiTicket } from "react-icons/hi";
 import { useThemeStore } from "../../store/themeStore";
+import logo from "../../assets/logo.png";
+import getick from "../../assets/getick.png";
 
 const Register = () => {
   const theme = useThemeStore((state) => state.theme);
@@ -65,7 +67,7 @@ const Register = () => {
       <div className='w-full max-w-md'>
         <div className='text-center mb-8 flex flex-col items-center'>
           <img
-            src={theme === "dark" ? "/assets/logo-2.png" : "/assets/logo1.png"}
+            src={theme === "dark" ? logo : getick}
             alt='Getick Logo'
             className='h-18 w-20'
           />
