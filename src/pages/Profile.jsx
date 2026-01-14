@@ -128,7 +128,7 @@ const Profile = () => {
             </div>
           )}
 
-          <div className='bg-text/50 p-4 text-text/90'>
+          <div className='bg-text/50 p-2 text-text/90'>
             <p className='text-sm text-text/50'>Email</p>
             <p className='font-medium text-text/90'>{user?.email}</p>
             <p className='text-xs text-text/50 mt-1'>Email cannot be changed</p>
