@@ -2,8 +2,10 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { HiTicket } from "react-icons/hi";
+import { useThemeStore } from "../../store/themeStore";
 
 const Login = () => {
+  const theme = useThemeStore((state) => state.theme);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -43,10 +45,14 @@ const Login = () => {
   };
 
   return (
-    <div className='min-h-screen bg-surface flex items-center justify-center px-4'>
+    <div className='min-h-[80vh] bg-surface flex items-center justify-center px-4'>
       <div className='w-full max-w-md'>
-        <div className='text-center mb-8'>
-          <HiTicket className='text-5xl text-text mx-auto' />
+        <div className='text-center mb-8 flex flex-col items-center'>
+          <img
+            src={theme === "dark" ? "/assets/logo-2.png" : "/assets/logo1.png"}
+            alt='Getick Logo'
+            className='h-18 w-20'
+          />
           <h1 className='text-2xl font-bold text-text mt-4'>Welcome Back</h1>
           <p className='text-text mt-2'>Sign in to your account</p>
         </div>

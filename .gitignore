@@ -1,3 +1,6 @@
 .env
 node_modules
 ci-cd.yml
+getick_logo.png
+
+api.js

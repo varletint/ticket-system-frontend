@@ -23,14 +23,15 @@ const Navbar = () => {
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
         <div className='flex items-center justify-between h-16'>
           {/* Logo */}
-          {/* <HiTicket className='text-3xl text-text' onClick={ toggleTheme } /> */}
-          {theme === "dark" ? (
-            <HiSun className='text-xl text-text' onClick={toggleTheme} />
-          ) : (
-            <HiMoon className='text-xl text-text' onClick={toggleTheme} />
-          )}
-          <Link to='/' className='flex items-center gap-2'>
-            <span className='font-bold text-xl text-text font-[Plus_Jakarta_Sans]'>
+          <Link to='/' className='flex items-center gap-1'>
+            <img
+              src={
+                theme === "dark" ? "/assets/logo-2.png" : "/assets/logo1.png"
+              }
+              alt='Getick Logo'
+              className='h-8 w-auto'
+            />
+            <span className='font-bold text-3xl text-text font-[Plus_Jakarta_Sans]'>
               Getick
             </span>
           </Link>
@@ -103,17 +104,23 @@ const Navbar = () => {
               </div>
             )}
           </div>
-
-          {/* Mobile menu button */}
-          <button
-            className='md:hidden text-text'
-            onClick={() => setIsMenuOpen(!isMenuOpen)}>
-            {isMenuOpen ? (
-              <HiX className='text-2xl' />
+          <div className='flex items-center gap-6'>
+            {theme === "dark" ? (
+              <HiSun className='text-xl text-text' onClick={toggleTheme} />
             ) : (
-              <HiMenu className='text-2xl' />
+              <HiMoon className='text-xl text-text' onClick={toggleTheme} />
             )}
-          </button>
+            {/* Mobile menu button */}
+            <button
+              className='md:hidden text-text'
+              onClick={() => setIsMenuOpen(!isMenuOpen)}>
+              {isMenuOpen ? (
+                <HiX className='text-2xl' />
+              ) : (
+                <HiMenu className='text-2xl' />
+              )}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Navigation */}
