@@ -101,5 +101,4 @@ Create a `.env` file in the `client` directory with the following variables:
 
 **Code Cleanup**
 
-- Removed mock Paystack code from `paystackService.js`
 - Cleaned up button styling in `SetupPayout.jsx`
