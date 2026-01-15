@@ -1,10 +1,12 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 import { eventAPI } from "../../services/api";
-import { HiPlus, HiTrash } from "react-icons/hi";
+import { HiPlus, HiTrash, HiExclamationCircle } from "react-icons/hi";
 
 const CreateEvent = () => {
   const navigate = useNavigate();
+  const { hasPaystack } = useAuth();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [formData, setFormData] = useState({
@@ -18,6 +20,31 @@ const CreateEvent = () => {
       { name: "General Admission", price: 5000, quantity: 100, maxPerUser: 4 },
     ],
   });
+
+  // Block event creation if payout is not set up
+  if (!hasPaystack) {
+    return (
+      <div className='bg-surface w-full'>
+        <div className='max-w-xl mx-auto px-4 py-8'>
+          <div className='card p-8 text-center'>
+            <div className='w-16 h-16 bg-amber-100 flex items-center justify-center mx-auto mb-4'>
+              <HiExclamationCircle className='text-3xl text-amber-600' />
+            </div>
+            <h1 className='text-xl font-bold text-text mb-2'>
+              Payout Setup Required
+            </h1>
+            <p className='text-text/70 mb-4'>
+              You need to set up your payout account before you can create
+              events. This ensures you can receive payments from ticket sales.
+            </p>
+            <Link to='/organizer/setup-payout' className='btn-primary'>
+              Setup Payout Account
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   const handleChange = (e) => {
     const { name, value } = e.target;

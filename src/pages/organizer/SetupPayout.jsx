@@ -93,7 +93,7 @@ const SetupPayout = () => {
             You need to complete your profile to get approved before you can
             setup payouts.
           </p>
-          <button onClick={() => navigate("/profile")} className='btn-primary'>
+          <button onClick={() => navigate("/profile")} className='btn'>
             Complete Profile
           </button>
         </div>
@@ -115,9 +115,7 @@ const SetupPayout = () => {
             Your Paystack subaccount is already active. Contact support if you
             need to make changes.
           </p>
-          <button
-            onClick={() => navigate("/organizer")}
-            className='btn-primary'>
+          <button onClick={() => navigate("/organizer")} className='btn'>
             Back to Dashboard
           </button>
         </div>

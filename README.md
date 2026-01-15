@@ -65,3 +65,41 @@ Create a `.env` file in the `client` directory with the following variables:
 - `npm run build`: Builds the application for production.
 - `npm run lint`: Runs ESLint for code linting.
 - `npm run preview`: Previews the production build locally.
+
+---
+
+## Development Journal
+
+### January 15, 2026
+
+**Payout Setup Requirement for Event Creation**
+
+- Organizers must now set up their payout account before creating events
+- **Backend**: Added validation in `eventController.js` → `createEvent` that checks `paystack.isActive`
+- **Frontend**: Added blocker UI in `CreateEvent.jsx` that redirects to payout setup if not configured
+- Added "Setup Payout" quick link to `OrganizerDashboard.jsx`
+
+**Fixed Paystack Subaccount Split Configuration**
+
+- **Issue**: Paystack dashboard showed wrong split (subaccount 10%, platform 90%)
+- **Root cause**: Was using `share: 90` instead of `percentage_charge: 10`
+- **Fix**: Changed to `percentage_charge` which represents the platform's cut
+- Updated `paystackService.js` and `organizerController.js`
+- **New logic**: Platform fee = 10%, Organizer receives = 90%
+
+**AuthContext Improvements**
+
+- Added `refreshUser()` function to re-fetch user data from API
+- Exported `refreshUser` in context value for use in Profile and SetupPayout pages
+- Fixes issue where profile data wasn't refreshing after updates
+
+**Organizer Profile Data**
+
+- Fixed organizer data (businessName, description) loading in Profile page
+- Added `platformFeePercent` field to track platform's percentage
+- Updated paystack storage to include `percentageCharge` (organizer's share: 90%)
+
+**Code Cleanup**
+
+- Removed mock Paystack code from `paystackService.js`
+- Cleaned up button styling in `SetupPayout.jsx`
